@@ -1,0 +1,2931 @@
+{
+  "info": {
+    "_postman_id": "914ba41a-70c2-41da-ae54-1f6a3c3b4804",
+    "name": "TaskFlow-Task Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15491437",
+    "_collection_link": "https://go.postman.co/collection/15491437-914ba41a-70c2-41da-ae54-1f6a3c3b4804?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Positive Testcases",
+      "item": [
+        {
+          "name": "Login Authentication",
+          "item": [
+            {
+              "name": "Demo User",
+              "item": [
+                {
+                  "name": "UserLogin-Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "    pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"token\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"id\").that.is.a(\"number\");\r",
+                          "    pm.expect(response.user).to.have.property(\"name\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"email\").that.is.a(\"string\");\r",
+                          "\r",
+                          "    \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"email\": \"demo@taskflow.com\",\r\n  \"password\": \"demo123\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/login",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Users",
+              "item": [
+                {
+                  "name": "RkhanLogin-Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const jsonData = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"rkhanUserToken\", jsonData.token);\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "    pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"token\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"id\").that.is.a(\"number\");\r",
+                          "    pm.expect(response.user).to.have.property(\"name\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"email\").that.is.a(\"string\");\r",
+                          "\r",
+                          "    \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"email\": \"ranumkhan123@gmail.com\",\r\n  \"password\": \"rk123456\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/login",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  "//For Console Logging\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "const bytes    = pm.response.text().length;\r",
+                  "const kb       = (bytes/1024).toFixed(2);\r",
+                  "const header   = pm.response.headers;\r",
+                  "\r",
+                  "//Response Time\r",
+                  "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                  "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                  "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                  "});\r",
+                  "\r",
+                  "//Size\r",
+                  "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                  "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                  "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                  "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "//Headers \r",
+                  "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "//JSON validity \r",
+                  "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Signup Authentication",
+          "item": [
+            {
+              "name": "Users",
+              "item": [
+                {
+                  "name": "UserSignup-Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const jsonData = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"rkhanUserToken\", jsonData.token);\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 201\", function () {\r",
+                          "    pm.response.to.have.status(201);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"token\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"id\").that.is.a(\"number\");\r",
+                          "    pm.expect(response.user).to.have.property(\"name\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"email\").that.is.a(\"string\");\r",
+                          "\r",
+                          "    \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"rk123456\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/signup",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      "//For Console Logging\r",
+                      "\r",
+                      "const jsonData = pm.response.json();\r",
+                      "\r",
+                      "const bytes    = pm.response.text().length;\r",
+                      "const kb       = (bytes/1024).toFixed(2);\r",
+                      "const header   = pm.response.headers;\r",
+                      "\r",
+                      "//Response Time\r",
+                      "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                      "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                      "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                      "});\r",
+                      "\r",
+                      "//Size\r",
+                      "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                      "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                      "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                      "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "//Headers \r",
+                      "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                      "\r",
+                      "});\r",
+                      "\r",
+                      "//JSON validity \r",
+                      "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                      "    pm.response.to.be.json;\r",
+                      "});\r",
+                      ""
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  "//For Console Logging\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "const bytes    = pm.response.text().length;\r",
+                  "const kb       = (bytes/1024).toFixed(2);\r",
+                  "const header   = pm.response.headers;\r",
+                  "\r",
+                  "//Response Time\r",
+                  "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                  "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                  "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                  "});\r",
+                  "\r",
+                  "//Size\r",
+                  "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                  "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                  "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                  "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "//Headers \r",
+                  "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "//JSON validity \r",
+                  "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "User List",
+          "item": [
+            {
+              "name": "User List",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const response = pm.response.json();\r",
+                      "\r",
+                      "\r",
+                      "//Tests \r",
+                      "\r",
+                      "//Check the status code\r",
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "//Check response is an object\r",
+                      "pm.test(\"Response is an object\", function () {\r",
+                      "    pm.expect(response).to.be.an(\"object\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "// Validate data types of the body\r",
+                      "pm.test(\"Validate object fields\", function () {\r",
+                      "    pm.expect(response).to.have.property(\"id\").that.is.a(\"number\");\r",
+                      "    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");\r",
+                      "    pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");\r",
+                      "    pm.expect(response).to.have.property(\"createdAt\").that.is.a(\"string\");\r",
+                      "\r",
+                      "    \r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "\r",
+                      "\r",
+                      "//  Log Summary Info\r",
+                      "console.log(\"Status Code:\", pm.response.code);\r",
+                      "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                      "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                      "console.log();"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BaseURL}}/auth/me",
+                  "host": [
+                    "{{BaseURL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "auth": {
+            "type": "bearer",
+            "bearer": [
+              {
+                "key": "token",
+                "value": "{{rkhanUserToken}}",
+                "type": "string"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  "//For Console Logging\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "const bytes    = pm.response.text().length;\r",
+                  "const kb       = (bytes/1024).toFixed(2);\r",
+                  "const header   = pm.response.headers;\r",
+                  "\r",
+                  "//Response Time\r",
+                  "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                  "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                  "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                  "});\r",
+                  "\r",
+                  "//Size\r",
+                  "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                  "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                  "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                  "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "//Headers \r",
+                  "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "//JSON validity \r",
+                  "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Tasks",
+          "item": [
+            {
+              "name": "RkhanUser",
+              "item": [
+                {
+                  "name": "Task",
+                  "item": [
+                    {
+                      "name": "All Tasks",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is array\r",
+                              "pm.test(\"Response is in an array\", () => {\r",
+                              "    pm.expect(response).to.be.an('array');\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is not empty\r",
+                              "pm.test(\"Response is not empty\", () => {\r",
+                              "    pm.expect(response.length).to.be.above(0);\r",
+                              "});\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "    response.forEach(response => {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // userId\r",
+                              "        pm.expect(response).to.have.property(\"userId\");\r",
+                              "        pm.expect(response.userId).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // title\r",
+                              "        pm.expect(response).to.have.property(\"title\");\r",
+                              "        pm.expect(response.title).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // description\r",
+                              "        pm.expect(response).to.have.property(\"description\");\r",
+                              "        pm.expect(response.description).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "        pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);\r",
+                              "\r",
+                              "        // priority\r",
+                              "        pm.expect(response).to.have.property(\"priority\");\r",
+                              "        pm.expect(response.priority).to.be.a(\"string\");\r",
+                              "        pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);\r",
+                              "\r",
+                              "        // dueDate\r",
+                              "        pm.expect(response).to.have.property(\"dueDate\");\r",
+                              "        pm.expect(response.dueDate).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // createdAt\r",
+                              "        pm.expect(response).to.have.property(\"createdAt\");\r",
+                              "        pm.expect(response.createdAt).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // updatedAt\r",
+                              "        pm.expect(response).to.have.property(\"updatedAt\");\r",
+                              "        pm.expect(response.updatedAt).to.be.a(\"string\");\r",
+                              "    });\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              "\r",
+                              "//Pick random task\r",
+                              "const randomTask = response[Math.floor(Math.random() * response.length)];\r",
+                              "\r",
+                              "//Save random task info to environment\r",
+                              "pm.environment.set(\"randomTaskId\", randomTask.id);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Task Status",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "//Check response is an object\r",
+                              "pm.test(\"Response is an object\", function () {\r",
+                              "    pm.expect(response).to.be.an(\"object\");\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Validate summary fields\", function () {\r",
+                              "    pm.expect(response).to.have.property(\"total\").that.is.a(\"number\");\r",
+                              "    pm.expect(response).to.have.property(\"completed\").that.is.a(\"number\");\r",
+                              "    pm.expect(response).to.have.property(\"pending\").that.is.a(\"number\");\r",
+                              "    pm.expect(response).to.have.property(\"inProgress\").that.is.a(\"number\");\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log(\"Response Body:\", pm.response.text());\r",
+                              "console.log();"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/stats",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Task By ID",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "    // id",
+                              "    pm.expect(response).to.have.property(\"id\");",
+                              "    pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "    // userId",
+                              "    pm.expect(response).to.have.property(\"userId\");",
+                              "    pm.expect(response.userId).to.be.a(\"number\");",
+                              "",
+                              "    // title",
+                              "    pm.expect(response).to.have.property(\"title\");",
+                              "    pm.expect(response.title).to.be.a(\"string\");",
+                              "",
+                              "    // description",
+                              "    pm.expect(response).to.have.property(\"description\");",
+                              "    pm.expect(response.description).to.be.a(\"string\");",
+                              "",
+                              "    // status",
+                              "    pm.expect(response).to.have.property(\"status\");",
+                              "    pm.expect(response.status).to.be.a(\"string\");",
+                              "    pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
+                              "",
+                              "    // priority",
+                              "    pm.expect(response).to.have.property(\"priority\");",
+                              "    pm.expect(response.priority).to.be.a(\"string\");",
+                              "    pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
+                              "",
+                              "    // dueDate",
+                              "    pm.expect(response).to.have.property(\"dueDate\");",
+                              "    pm.expect(response.dueDate).to.be.a(\"string\");",
+                              "",
+                              "    // createdAt",
+                              "    pm.expect(response).to.have.property(\"createdAt\");",
+                              "    pm.expect(response.createdAt).to.be.a(\"string\");",
+                              "",
+                              "    // updatedAt",
+                              "    pm.expect(response).to.have.property(\"updatedAt\");",
+                              "    pm.expect(response.updatedAt).to.be.a(\"string\");",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Task Info:\");",
+                              "console.log(\"Task ID:\", response.id);",
+                              "console.log(\"Task Title:\", response.title);",
+                              "console.log(\"Task Description:\", response.description);",
+                              "console.log(\"Task Status:\", response.status);",
+                              "console.log(\"Task Priority:\", response.priority);",
+                              "console.log(\"Task Due Date:\", response.dueDate);",
+                              "console.log();",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/{{randomTaskId}}",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "{{randomTaskId}}"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Create Task",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 201\", function () {",
+                              "    pm.response.to.have.status(201);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "    // id",
+                              "    pm.expect(response).to.have.property(\"id\");",
+                              "    pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "    // userId",
+                              "    pm.expect(response).to.have.property(\"userId\");",
+                              "    pm.expect(response.userId).to.be.a(\"number\");",
+                              "",
+                              "    // title",
+                              "    pm.expect(response).to.have.property(\"title\");",
+                              "    pm.expect(response.title).to.be.a(\"string\");",
+                              "",
+                              "    // description",
+                              "    pm.expect(response).to.have.property(\"description\");",
+                              "    pm.expect(response.description).to.be.a(\"string\");",
+                              "",
+                              "    // status",
+                              "    pm.expect(response).to.have.property(\"status\");",
+                              "    pm.expect(response.status).to.be.a(\"string\");",
+                              "    pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
+                              "",
+                              "    // priority",
+                              "    pm.expect(response).to.have.property(\"priority\");",
+                              "    pm.expect(response.priority).to.be.a(\"string\");",
+                              "    pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
+                              "",
+                              "    // dueDate",
+                              "    pm.expect(response).to.have.property(\"dueDate\");",
+                              "    pm.expect(response.dueDate).to.be.a(\"string\");",
+                              "",
+                              "    // createdAt",
+                              "    pm.expect(response).to.have.property(\"createdAt\");",
+                              "    pm.expect(response.createdAt).to.be.a(\"string\");",
+                              "",
+                              "    // updatedAt",
+                              "    pm.expect(response).to.have.property(\"updatedAt\");",
+                              "    pm.expect(response.updatedAt).to.be.a(\"string\");",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Task Info:\");",
+                              "console.log(\"Task ID:\", response.id);",
+                              "console.log(\"Task Title:\", response.title);",
+                              "console.log(\"Task Description:\", response.description);",
+                              "console.log(\"Task Status:\", response.status);",
+                              "console.log(\"Task Priority:\", response.priority);",
+                              "console.log(\"Task Due Date:\", response.dueDate);",
+                              "console.log(\"Task Created Date:\", response.createdAt);",
+                              "console.log(\"Task Updated Date:\", response.updatedAt);",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"{{$randomPhrase}}\",\r\n  \"description\": \"{{$randomLoremParagraph}}\",\r\n  \"status\": \"In Progress\",\r\n  \"priority\": \"High\",\r\n  \"dueDate\": \"2026-01-15\"\r\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Update Task",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "    // id",
+                              "    pm.expect(response).to.have.property(\"id\");",
+                              "    pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "    // userId",
+                              "    pm.expect(response).to.have.property(\"userId\");",
+                              "    pm.expect(response.userId).to.be.a(\"number\");",
+                              "",
+                              "    // title",
+                              "    pm.expect(response).to.have.property(\"title\");",
+                              "    pm.expect(response.title).to.be.a(\"string\");",
+                              "",
+                              "    // description",
+                              "    pm.expect(response).to.have.property(\"description\");",
+                              "    pm.expect(response.description).to.be.a(\"string\");",
+                              "",
+                              "    // status",
+                              "    pm.expect(response).to.have.property(\"status\");",
+                              "    pm.expect(response.status).to.be.a(\"string\");",
+                              "    pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
+                              "",
+                              "    // priority",
+                              "    pm.expect(response).to.have.property(\"priority\");",
+                              "    pm.expect(response.priority).to.be.a(\"string\");",
+                              "    pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
+                              "",
+                              "    // dueDate",
+                              "    pm.expect(response).to.have.property(\"dueDate\");",
+                              "    pm.expect(response.dueDate).to.be.a(\"string\");",
+                              "",
+                              "    // createdAt",
+                              "    pm.expect(response).to.have.property(\"createdAt\");",
+                              "    pm.expect(response.createdAt).to.be.a(\"string\");",
+                              "",
+                              "    // updatedAt",
+                              "    pm.expect(response).to.have.property(\"updatedAt\");",
+                              "    pm.expect(response.updatedAt).to.be.a(\"string\");",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Task Info:\");",
+                              "console.log(\"Task ID:\", response.id);",
+                              "console.log(\"Task Title:\", response.title);",
+                              "console.log(\"Task Description:\", response.description);",
+                              "console.log(\"Task Status:\", response.status);",
+                              "console.log(\"Task Priority:\", response.priority);",
+                              "console.log(\"Task Due Date:\", response.dueDate);",
+                              "console.log(\"Task Created Date:\", response.createdAt);",
+                              "console.log(\"Task Updated Date:\", response.updatedAt);",
+                              "console.log();",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"{{$randomDateFuture}}\",\r\n  \"description\": \"{{$randomLoremParagraph}}\",\r\n  \"status\": \"In Progress\",\r\n  \"priority\": \"High\",\r\n  \"dueDate\": \"2026-01-18\"\r\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/{{randomTaskId}}",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "{{randomTaskId}}"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Delete Task",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Message has correct data type\", function () {",
+                              "    // id",
+                              "    pm.expect(response).to.have.property(\"message\");",
+                              "    pm.expect(response.message).to.be.a(\"string\");",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Message Info:\");",
+                              "console.log(\"Message:\", response.message);",
+                              "console.log();",
+                              "",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/{{randomTaskId}}",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "{{randomTaskId}}"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Task By Date",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an array\", function () {",
+                              "    pm.expect(response).to.be.an(\"array\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"The response has correct data type\", function () {",
+                              "       response.forEach(response => {",
+                              "        ",
+                              "        // id",
+                              "        pm.expect(response).to.have.property(\"id\");",
+                              "        pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "        // userId",
+                              "        pm.expect(response).to.have.property(\"userId\");",
+                              "        pm.expect(response.userId).to.be.a(\"number\");",
+                              "",
+                              "        // title",
+                              "        pm.expect(response).to.have.property(\"title\");",
+                              "        pm.expect(response.title).to.be.a(\"string\");",
+                              "",
+                              "        // description",
+                              "        pm.expect(response).to.have.property(\"description\");",
+                              "        pm.expect(response.description).to.be.a(\"string\");",
+                              "",
+                              "        // status",
+                              "        pm.expect(response).to.have.property(\"status\");",
+                              "        pm.expect(response.status).to.be.a(\"string\");",
+                              "        pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
+                              "",
+                              "        // priority",
+                              "        pm.expect(response).to.have.property(\"priority\");",
+                              "        pm.expect(response.priority).to.be.a(\"string\");",
+                              "        pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
+                              "",
+                              "        // dueDate",
+                              "        pm.expect(response).to.have.property(\"dueDate\");",
+                              "        pm.expect(response.dueDate).to.be.a(\"string\");",
+                              "",
+                              "        // createdAt",
+                              "        pm.expect(response).to.have.property(\"createdAt\");",
+                              "        pm.expect(response.createdAt).to.be.a(\"string\");",
+                              "",
+                              "        // updatedAt",
+                              "        pm.expect(response).to.have.property(\"updatedAt\");",
+                              "        pm.expect(response.updatedAt).to.be.a(\"string\");",
+                              "    });",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Response Info:\");",
+                              "console.log(\"Response:\", response);",
+                              "console.log();",
+                              "",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/date/2026-01-15",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "date",
+                            "2026-01-15"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Weekly Tasks",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "//Check days are in array",
+                              "pm.test(\"Days in response are an array\", () => {",
+                              "    pm.expect(response.days).to.be.an(\"array\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Top-level fields have correct data types\", function () {",
+                              "        ",
+                              "        // total",
+                              "        pm.expect(response).to.have.property(\"total\");",
+                              "        pm.expect(response.total).to.be.a(\"number\");",
+                              "",
+                              "        // completed",
+                              "        pm.expect(response).to.have.property(\"completed\");",
+                              "        pm.expect(response.completed).to.be.a(\"number\");",
+                              "",
+                              "        //pending",
+                              "        pm.expect(response).to.have.property(\"pending\");",
+                              "        pm.expect(response.pending).to.be.a(\"number\");",
+                              "});",
+                              "",
+                              "//Days array structure validation",
+                              "pm.test(\"Each day has correct structure and data types\", () => {",
+                              "    response.days.forEach(day => {",
+                              "",
+                              "        //date",
+                              "        pm.expect(day).to.have.property(\"date\");",
+                              "        pm.expect(day.date).to.be.a(\"string\");",
+                              "        ",
+                              "        //total",
+                              "        pm.expect(day).to.have.property(\"total\");",
+                              "        pm.expect(day.total).to.be.a(\"number\");",
+                              "        ",
+                              "        ",
+                              "        //completed",
+                              "        pm.expect(day).to.have.property(\"completed\");",
+                              "        pm.expect(day.completed).to.be.a(\"number\");",
+                              "        ",
+                              "        //pending",
+                              "        pm.expect(day).to.have.property(\"pending\");",
+                              "        pm.expect(day.pending).to.be.a(\"number\");",
+                              "    });",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Response Info:\");",
+                              "console.log(\"Response:\", response);",
+                              "console.log();",
+                              "",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/weekly?start=2026-01-12&end=2026-01-18",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "weekly"
+                          ],
+                          "query": [
+                            {
+                              "key": "start",
+                              "value": "2026-01-12"
+                            },
+                            {
+                              "key": "end",
+                              "value": "2026-01-18"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "Activities",
+                  "item": [
+                    {
+                      "name": "Task History",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is array\r",
+                              "pm.test(\"Response is in an array\", () => {\r",
+                              "    pm.expect(response).to.be.an('array');\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is not empty\r",
+                              "pm.test(\"Response is not empty\", () => {\r",
+                              "    pm.expect(response.length).to.be.above(0);\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "    response.forEach(response => {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // userId\r",
+                              "        pm.expect(response).to.have.property(\"userId\");\r",
+                              "        pm.expect(response.userId).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // taskId\r",
+                              "        pm.expect(response).to.have.property(\"taskId\");\r",
+                              "        pm.expect(response.taskId).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // action\r",
+                              "        pm.expect(response).to.have.property(\"action\");\r",
+                              "        pm.expect(response.acion).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // description\r",
+                              "        pm.expect(response).to.have.property(\"description\");\r",
+                              "        pm.expect(response.description).to.be.a(\"string\");\r",
+                              "\r",
+                              "        \r",
+                              "    });\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              "\r",
+                              "//Pick random task\r",
+                              "const randomTask = response[Math.floor(Math.random() * response.length)];\r",
+                              "\r",
+                              "//Save random task info to environment\r",
+                              "pm.environment.set(\"randomTaskId\", randomTask.id);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/activities",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "activities"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Single Task History",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is array",
+                              "pm.test(\"Response is in an array\", () => {",
+                              "    pm.expect(response).to.be.an('array');",
+                              "});",
+                              "",
+                              "//Check response is not empty",
+                              "pm.test(\"Response is not empty\", () => {",
+                              "    pm.expect(response.length).to.be.above(0);",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "pm.test(\"Each field has correct data types\", function () {",
+                              "    response.forEach((item, index) => {",
+                              "        // id",
+                              "        pm.expect(item).to.have.property(\"id\");",
+                              "        pm.expect(item.id).to.be.a(\"number\");",
+                              "",
+                              "        // userId",
+                              "        pm.expect(item).to.have.property(\"userId\");",
+                              "        pm.expect(item.userId).to.be.a(\"number\");",
+                              "",
+                              "        // taskId",
+                              "        pm.expect(item).to.have.property(\"taskId\");",
+                              "        pm.expect(item.taskId).to.be.a(\"number\");",
+                              "",
+                              "        // action",
+                              "        pm.expect(item).to.have.property(\"action\");",
+                              "        pm.expect(item.action).to.be.a(\"string\");",
+                              "",
+                              "        // description",
+                              "        pm.expect(item).to.have.property(\"description\");",
+                              "        pm.expect(item.description).to.be.a(\"string\");",
+                              "    });",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "",
+                              "",
+                              "//Pick random task",
+                              "const randomTask = response[Math.floor(Math.random() * response.length)];",
+                              "",
+                              "//Save random task info to environment",
+                              "pm.environment.set(\"randomTaskId\", randomTask.id);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks/{{randomTaskId}}/activities",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks",
+                            "{{randomTaskId}}",
+                            "activities"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "Pomodoro Timer",
+                  "item": [
+                    {
+                      "name": "Start Pomodoro",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "",
+                              "        // id",
+                              "        pm.expect(response).to.have.property(\"id\");",
+                              "        pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "        // mode",
+                              "        pm.expect(response).to.have.property(\"mode\");",
+                              "        pm.expect(response.mode).to.be.a(\"string\");",
+                              "",
+                              "        // status",
+                              "        pm.expect(response).to.have.property(\"status\");",
+                              "        pm.expect(response.status).to.be.a(\"string\");",
+                              "",
+                              "        // duration",
+                              "        pm.expect(response).to.have.property(\"duration\");",
+                              "        pm.expect(response.duration).to.be.a(\"number\");",
+                              "",
+                              "        // elasped",
+                              "        pm.expect(response).to.have.property(\"elapsed\");",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");",
+                              "",
+                              "        // startTime",
+                              "          pm.expect(response).to.have.property(\"startTime\");",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");",
+                              "   ",
+                              "",
+                              "            // TaskId can be number or null",
+                              "        pm.expect(response).to.have.property(\"taskId\");",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"focus\",\r\n  \"duration\": 1500,\r\n  \"taskId\": null\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/start",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "start"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Pause Pomodoro",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is an object\r",
+                              "pm.test(\"Response is an object\", function () {\r",
+                              "    pm.expect(response).to.be.an(\"object\");\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // mode\r",
+                              "        pm.expect(response).to.have.property(\"mode\");\r",
+                              "        pm.expect(response.mode).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // duration\r",
+                              "        pm.expect(response).to.have.property(\"duration\");\r",
+                              "        pm.expect(response.duration).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // elasped\r",
+                              "        pm.expect(response).to.have.property(\"elapsed\");\r",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // startTime\r",
+                              "          pm.expect(response).to.have.property(\"startTime\");\r",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");\r",
+                              "   \r",
+                              "            // TaskId can be number or null\r",
+                              "        pm.expect(response).to.have.property(\"taskId\");\r",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"break\",\r\n  \"duration\": \"100\",\r\n  \"taskId\": \"26\"\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/pause",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "pause"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Resume Pomodoro",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is an object\r",
+                              "pm.test(\"Response is an object\", function () {\r",
+                              "    pm.expect(response).to.be.an(\"object\");\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // mode\r",
+                              "        pm.expect(response).to.have.property(\"mode\");\r",
+                              "        pm.expect(response.mode).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // duration\r",
+                              "        pm.expect(response).to.have.property(\"duration\");\r",
+                              "        pm.expect(response.duration).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // elasped\r",
+                              "        pm.expect(response).to.have.property(\"elapsed\");\r",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // startTime\r",
+                              "          pm.expect(response).to.have.property(\"startTime\");\r",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");\r",
+                              "   \r",
+                              "\r",
+                              "            // TaskId can be number or null\r",
+                              "        pm.expect(response).to.have.property(\"taskId\");\r",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"break\",\r\n  \"duration\": \"100\",\r\n  \"taskId\": \"26\"\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/resume",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "resume"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Complete Pomodoro",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is an object\r",
+                              "pm.test(\"Response is an object\", function () {\r",
+                              "    pm.expect(response).to.be.an(\"object\");\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // mode\r",
+                              "        pm.expect(response).to.have.property(\"mode\");\r",
+                              "        pm.expect(response.mode).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // duration can be number or null\r",
+                              "        pm.expect(response).to.have.property(\"duration\");\r",
+                              "        pm.expect(response.duration === null || typeof response.duration === \"number\").to.be.true;\r",
+                              "\r",
+                              "\r",
+                              "        // elasped\r",
+                              "        pm.expect(response).to.have.property(\"elapsed\");\r",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // startTime\r",
+                              "          pm.expect(response).to.have.property(\"startTime\");\r",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");\r",
+                              "   \r",
+                              "\r",
+                              "            // TaskId can be number or null\r",
+                              "        pm.expect(response).to.have.property(\"taskId\");\r",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"break\",\r\n  \"duration\": \"100\",\r\n  \"taskId\": \"26\"\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/complete",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "complete"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Current Pomodoro",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Check response type\r",
+                              "pm.test(\"Response is either null or an object\", function () {\r",
+                              "    pm.expect(response === null || typeof response === \"object\").to.be.true;\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "// Print response based on condition\r",
+                              "if (response === null) {\r",
+                              "    console.log();\r",
+                              "    console.log(\"Pomodoro Response: null (No current pomodoro running)\");\r",
+                              "} else {\r",
+                              "    console.log();\r",
+                              "    console.log(\"Pomodoro Response Object:\", response);\r",
+                              "}\r",
+                              "\r",
+                              "// Only validate fields if response is not null\r",
+                              "if (response !== null) {\r",
+                              "\r",
+                              "    pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // mode\r",
+                              "        pm.expect(response).to.have.property(\"mode\");\r",
+                              "        pm.expect(response.mode).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "        \r",
+                              "        // duration\r",
+                              "        pm.expect(response).to.have.property(\"duration\");\r",
+                              "        pm.expect(response.duration).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // elasped\r",
+                              "        pm.expect(response).to.have.property(\"elapsed\");\r",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // startTime\r",
+                              "          pm.expect(response).to.have.property(\"startTime\");\r",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");\r",
+                              "   \r",
+                              "        // TaskId can be number or null\r",
+                              "        pm.expect(response).to.have.property(\"taskId\");\r",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;\r",
+                              "    });\r",
+                              "} else {\r",
+                              "    console.log();\r",
+                              "    console.log(\"No current Pomodoro session running.\");\r",
+                              "}\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log();\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"break\",\r\n  \"duration\": \"100\",\r\n  \"taskId\": \"26\"\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/current",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "current"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Pomodoro history",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "",
+                              "//Check response is array",
+                              "pm.test(\"Response is in an array\", () => {",
+                              "    pm.expect(response).to.be.an('array');",
+                              "});",
+                              "",
+                              "//Check response is not empty",
+                              "pm.test(\"Response is not empty\", () => {",
+                              "    pm.expect(response.length).to.be.above(0);",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "    response.forEach(response => {",
+                              "",
+                              "        // id",
+                              "        pm.expect(response).to.have.property(\"id\");",
+                              "        pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "",
+                              "        // UserId can be number or null",
+                              "        pm.expect(response).to.have.property(\"userId\");",
+                              "        pm.expect(response.userId === null || typeof response.userId === \"number\").to.be.true;",
+                              "",
+                              "        // mode",
+                              "        pm.expect(response).to.have.property(\"mode\");",
+                              "        pm.expect(response.mode).to.be.a(\"string\");",
+                              "",
+                              "        // status",
+                              "        pm.expect(response).to.have.property(\"status\");",
+                              "        pm.expect(response.status).to.be.a(\"string\");",
+                              "        ",
+                              "        // duration",
+                              "        pm.expect(response).to.have.property(\"duration\");",
+                              "        pm.expect(response.duration).to.be.a(\"number\");",
+                              "",
+                              "        // elasped",
+                              "        pm.expect(response).to.have.property(\"elapsed\");",
+                              "        pm.expect(response.elapsed).to.be.a(\"number\");",
+                              "",
+                              "        // startTime",
+                              "        pm.expect(response).to.have.property(\"startTime\");",
+                              "        pm.expect(response.startTime).to.be.a(\"string\");",
+                              "   ",
+                              "        // endTime",
+                              "        pm.expect(response).to.have.property(\"endTime\");",
+                              "        pm.expect(response.endTime).to.be.a(\"string\");",
+                              "",
+                              "        // TaskId can be number or null",
+                              "        pm.expect(response).to.have.property(\"taskId\");",
+                              "        pm.expect(response.taskId === null || typeof response.taskId === \"number\").to.be.true;",
+                              "    });",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log();",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"mode\": \"break\",\r\n  \"duration\": \"100\",\r\n  \"taskId\": \"26\"\r\n}\r\n",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/pomodoro/history",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "pomodoro",
+                            "history"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      "//For Console Logging\r",
+                      "\r",
+                      "const jsonData = pm.response.json();\r",
+                      "\r",
+                      "const bytes    = pm.response.text().length;\r",
+                      "const kb       = (bytes/1024).toFixed(2);\r",
+                      "const header   = pm.response.headers;\r",
+                      "\r",
+                      "//Response Time\r",
+                      "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                      "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                      "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                      "});\r",
+                      "\r",
+                      "//Size\r",
+                      "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                      "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                      "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                      "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "//Headers \r",
+                      "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                      "\r",
+                      "});\r",
+                      "\r",
+                      "//JSON validity \r",
+                      "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                      "    pm.response.to.be.json;\r",
+                      "});\r",
+                      ""
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "auth": {
+            "type": "bearer",
+            "bearer": [
+              {
+                "key": "token",
+                "value": "{{rkhanUserToken}}",
+                "type": "string"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Negative Testcases",
+      "item": [
+        {
+          "name": "Login Authentication",
+          "item": [
+            {
+              "name": "Demo User",
+              "item": [
+                {
+                  "name": "Wrong password - Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"The status code is 401\", function () {\r",
+                          "    pm.response.to.have.status(401);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"The response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate the object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"error\").that.is.a(\"string\");\r",
+                          "   \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"email\": \"demo@taskflow.com\",\r\n  \"password\": \"demo1234\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/login",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Missing Email - Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"The status code is 400\", function () {\r",
+                          "    pm.response.to.have.status(400);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"The response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate the object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"error\").that.is.a(\"string\");\r",
+                          "   \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"password\": \"demo1234\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/login",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Users",
+              "item": [
+                {
+                  "name": "RkhanLogin-Auth",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const jsonData = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"rkhanUserToken\", jsonData.token);\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "    pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object fields\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"token\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"id\").that.is.a(\"number\");\r",
+                          "    pm.expect(response.user).to.have.property(\"name\").that.is.a(\"string\");\r",
+                          "    pm.expect(response.user).to.have.property(\"email\").that.is.a(\"string\");\r",
+                          "\r",
+                          "    \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"email\": \"ranumkhan123@gmail.com\",\r\n  \"password\": \"rk123456\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/login",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  "//For Console Logging\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "const bytes    = pm.response.text().length;\r",
+                  "const kb       = (bytes/1024).toFixed(2);\r",
+                  "const header   = pm.response.headers;\r",
+                  "\r",
+                  "//Response Time\r",
+                  "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                  "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                  "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                  "});\r",
+                  "\r",
+                  "//Size\r",
+                  "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                  "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                  "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                  "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "//Headers \r",
+                  "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "//JSON validity \r",
+                  "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Signup Authentication",
+          "item": [
+            {
+              "name": "Users",
+              "item": [
+                {
+                  "name": "Existing Email",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "const jsonData = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"rkhanUserToken\", jsonData.token);\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "const response = pm.response.json();\r",
+                          "\r",
+                          "//Save login auth token in environment variable\r",
+                          "\r",
+                          "pm.environment.set(\"demoUserToken\", response.token);\r",
+                          "\r",
+                          "\r",
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "    pm.response.to.have.status(400);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object field\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"error\").that.is.a(\"string\");\r",
+                          "\r",
+                          "\r",
+                          "    \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\": \"Anabiya1\",\r\n  \"email\": \"anabiya1234@gmail.com\",\r\n  \"password\": \"rk123456\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/signup",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                  "//For Console Logging\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "const bytes    = pm.response.text().length;\r",
+                  "const kb       = (bytes/1024).toFixed(2);\r",
+                  "const header   = pm.response.headers;\r",
+                  "\r",
+                  "//Response Time\r",
+                  "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
+                  "    const threshold = parseInt(pm.variables.get(\"max_response_time\")); // fetch from collection variable\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+                  "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+                  "});\r",
+                  "\r",
+                  "//Size\r",
+                  "pm.test(\"Response size under limit (Folder Level)\", () => {\r",
+                  "    const maxSize = parseInt(pm.variables.get(\"max_response_size\") || 15000); \r",
+                  "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+                  "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "//Headers \r",
+                  "pm.test(\"Content-Type = application/json (Folder Level)\", () => {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "//JSON validity \r",
+                  "pm.test(\"The body is valid JSON (Folder Level)\", () => {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  ""
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
