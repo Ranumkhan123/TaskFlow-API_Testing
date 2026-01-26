@@ -1,10 +1,11 @@
 {
   "info": {
-    "_postman_id": "914ba41a-70c2-41da-ae54-1f6a3c3b4804",
+    "_postman_id": "ad2f0575-eedb-4861-9b28-cffc28d6ebd8",
     "name": "TaskFlow-Task Manager",
+    "description": "**This collection is designed for real-world API testing of TaskFlow backend services.**\n\nIt includes **positive + negative test scenarios, token-based authorization, request chaining** (saving `taskId`, `sessionId`), and **validations for response structure, data types, and business logic**.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "15491437",
-    "_collection_link": "https://go.postman.co/collection/15491437-914ba41a-70c2-41da-ae54-1f6a3c3b4804?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/15491437-ad2f0575-eedb-4861-9b28-cffc28d6ebd8?source=collection_link"
   },
   "item": [
     {
@@ -182,6 +183,10 @@
               ]
             }
           ],
+          "description": "**Login Authentication** folder contains positive test cases to verify successful user login with valid credentials, ensuring a JWT token and correct user details are returned.",
+          "auth": {
+            "type": "noauth"
+          },
           "event": [
             {
               "listen": "prerequest",
@@ -391,6 +396,10 @@
               ]
             }
           ],
+          "description": "It contains test cases to verify successful user registration with valid details, ensuring a new account is created and a JWT token is returned.",
+          "auth": {
+            "type": "noauth"
+          },
           "event": [
             {
               "listen": "prerequest",
@@ -529,6 +538,7 @@
               "response": []
             }
           ],
+          "description": "This folder contains test cases to verify fetching user details/list successfully with a valid token, ensuring correct user data is returned.",
           "auth": {
             "type": "bearer",
             "bearer": [
@@ -606,6 +616,132 @@
                 {
                   "name": "Task",
                   "item": [
+                    {
+                      "name": "Create Task",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();",
+                              "",
+                              "",
+                              "//Tests ",
+                              "",
+                              "//Check the status code",
+                              "pm.test(\"Status code is 201\", function () {",
+                              "    pm.response.to.have.status(201);",
+                              "});",
+                              "",
+                              "//Check response is an object",
+                              "pm.test(\"Response is an object\", function () {",
+                              "    pm.expect(response).to.be.an(\"object\");",
+                              "});",
+                              "",
+                              "",
+                              "// Validate data types of the body",
+                              "",
+                              "pm.test(\"Each task fields has correct data types\", function () {",
+                              "    // id",
+                              "    pm.expect(response).to.have.property(\"id\");",
+                              "    pm.expect(response.id).to.be.a(\"number\");",
+                              "",
+                              "    // userId",
+                              "    pm.expect(response).to.have.property(\"userId\");",
+                              "    pm.expect(response.userId).to.be.a(\"number\");",
+                              "",
+                              "    // title",
+                              "    pm.expect(response).to.have.property(\"title\");",
+                              "    pm.expect(response.title).to.be.a(\"string\");",
+                              "",
+                              "    // description",
+                              "    pm.expect(response).to.have.property(\"description\");",
+                              "    pm.expect(response.description).to.be.a(\"string\");",
+                              "",
+                              "    // status",
+                              "    pm.expect(response).to.have.property(\"status\");",
+                              "    pm.expect(response.status).to.be.a(\"string\");",
+                              "    pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
+                              "",
+                              "    // priority",
+                              "    pm.expect(response).to.have.property(\"priority\");",
+                              "    pm.expect(response.priority).to.be.a(\"string\");",
+                              "    pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
+                              "",
+                              "    // dueDate",
+                              "    pm.expect(response).to.have.property(\"dueDate\");",
+                              "    pm.expect(response.dueDate).to.be.a(\"string\");",
+                              "",
+                              "    // createdAt",
+                              "    pm.expect(response).to.have.property(\"createdAt\");",
+                              "    pm.expect(response.createdAt).to.be.a(\"string\");",
+                              "",
+                              "    // updatedAt",
+                              "    pm.expect(response).to.have.property(\"updatedAt\");",
+                              "    pm.expect(response.updatedAt).to.be.a(\"string\");",
+                              "});",
+                              "",
+                              "",
+                              "",
+                              "",
+                              "//  Log Summary Info",
+                              "console.log(\"Status Code:\", pm.response.code);",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
+                              "console.log();",
+                              "console.log(\"Task Info:\");",
+                              "console.log(\"Task ID:\", response.id);",
+                              "console.log(\"Task Title:\", response.title);",
+                              "console.log(\"Task Description:\", response.description);",
+                              "console.log(\"Task Status:\", response.status);",
+                              "console.log(\"Task Priority:\", response.priority);",
+                              "console.log(\"Task Due Date:\", response.dueDate);",
+                              "console.log(\"Task Created Date:\", response.createdAt);",
+                              "console.log(\"Task Updated Date:\", response.updatedAt);",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        },
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"{{$randomPhrase}}\",\r\n  \"description\": \"{{$randomLoremParagraph}}\",\r\n  \"status\": \"In Progress\",\r\n  \"priority\": \"High\",\r\n  \"dueDate\": \"2026-01-15\"\r\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
                     {
                       "name": "All Tasks",
                       "event": [
@@ -710,6 +846,16 @@
                         }
                       ],
                       "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{rkhanUserToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
                         "method": "GET",
                         "header": [],
                         "url": {
@@ -900,132 +1046,6 @@
                           "path": [
                             "tasks",
                             "{{randomTaskId}}"
-                          ]
-                        }
-                      },
-                      "response": []
-                    },
-                    {
-                      "name": "Create Task",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "exec": [
-                              "const response = pm.response.json();",
-                              "",
-                              "",
-                              "//Tests ",
-                              "",
-                              "//Check the status code",
-                              "pm.test(\"Status code is 201\", function () {",
-                              "    pm.response.to.have.status(201);",
-                              "});",
-                              "",
-                              "//Check response is an object",
-                              "pm.test(\"Response is an object\", function () {",
-                              "    pm.expect(response).to.be.an(\"object\");",
-                              "});",
-                              "",
-                              "",
-                              "// Validate data types of the body",
-                              "",
-                              "pm.test(\"Each task fields has correct data types\", function () {",
-                              "    // id",
-                              "    pm.expect(response).to.have.property(\"id\");",
-                              "    pm.expect(response.id).to.be.a(\"number\");",
-                              "",
-                              "    // userId",
-                              "    pm.expect(response).to.have.property(\"userId\");",
-                              "    pm.expect(response.userId).to.be.a(\"number\");",
-                              "",
-                              "    // title",
-                              "    pm.expect(response).to.have.property(\"title\");",
-                              "    pm.expect(response.title).to.be.a(\"string\");",
-                              "",
-                              "    // description",
-                              "    pm.expect(response).to.have.property(\"description\");",
-                              "    pm.expect(response.description).to.be.a(\"string\");",
-                              "",
-                              "    // status",
-                              "    pm.expect(response).to.have.property(\"status\");",
-                              "    pm.expect(response.status).to.be.a(\"string\");",
-                              "    pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);",
-                              "",
-                              "    // priority",
-                              "    pm.expect(response).to.have.property(\"priority\");",
-                              "    pm.expect(response.priority).to.be.a(\"string\");",
-                              "    pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);",
-                              "",
-                              "    // dueDate",
-                              "    pm.expect(response).to.have.property(\"dueDate\");",
-                              "    pm.expect(response.dueDate).to.be.a(\"string\");",
-                              "",
-                              "    // createdAt",
-                              "    pm.expect(response).to.have.property(\"createdAt\");",
-                              "    pm.expect(response.createdAt).to.be.a(\"string\");",
-                              "",
-                              "    // updatedAt",
-                              "    pm.expect(response).to.have.property(\"updatedAt\");",
-                              "    pm.expect(response.updatedAt).to.be.a(\"string\");",
-                              "});",
-                              "",
-                              "",
-                              "",
-                              "",
-                              "//  Log Summary Info",
-                              "console.log(\"Status Code:\", pm.response.code);",
-                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");",
-                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");",
-                              "console.log();",
-                              "console.log(\"Task Info:\");",
-                              "console.log(\"Task ID:\", response.id);",
-                              "console.log(\"Task Title:\", response.title);",
-                              "console.log(\"Task Description:\", response.description);",
-                              "console.log(\"Task Status:\", response.status);",
-                              "console.log(\"Task Priority:\", response.priority);",
-                              "console.log(\"Task Due Date:\", response.dueDate);",
-                              "console.log(\"Task Created Date:\", response.createdAt);",
-                              "console.log(\"Task Updated Date:\", response.updatedAt);",
-                              "",
-                              ""
-                            ],
-                            "type": "text/javascript",
-                            "packages": {},
-                            "requests": {}
-                          }
-                        },
-                        {
-                          "listen": "prerequest",
-                          "script": {
-                            "exec": [
-                              ""
-                            ],
-                            "type": "text/javascript",
-                            "packages": {},
-                            "requests": {}
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "POST",
-                        "header": [],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\r\n  \"title\": \"{{$randomPhrase}}\",\r\n  \"description\": \"{{$randomLoremParagraph}}\",\r\n  \"status\": \"In Progress\",\r\n  \"priority\": \"High\",\r\n  \"dueDate\": \"2026-01-15\"\r\n}",
-                          "options": {
-                            "raw": {
-                              "language": "json"
-                            }
-                          }
-                        },
-                        "url": {
-                          "raw": "{{BaseURL}}/tasks",
-                          "host": [
-                            "{{BaseURL}}"
-                          ],
-                          "path": [
-                            "tasks"
                           ]
                         }
                       },
@@ -1512,6 +1532,30 @@
                         }
                       },
                       "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {},
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {},
+                        "exec": [
+                          ""
+                        ]
+                      }
                     }
                   ]
                 },
@@ -2365,6 +2409,16 @@
                   ]
                 }
               ],
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  {
+                    "key": "token",
+                    "value": "{{rkhanUserToken}}",
+                    "type": "string"
+                  }
+                ]
+              },
               "event": [
                 {
                   "listen": "prerequest",
@@ -2373,6 +2427,9 @@
                     "packages": {},
                     "requests": {},
                     "exec": [
+                      "if (!pm.environment.get(\"token\")) {\r",
+                      "    console.log(\"Token not found. Login required.\");\r",
+                      "}\r",
                       ""
                     ]
                   }
@@ -2391,6 +2448,15 @@
                       "const bytes    = pm.response.text().length;\r",
                       "const kb       = (bytes/1024).toFixed(2);\r",
                       "const header   = pm.response.headers;\r",
+                      "\r",
+                      "\r",
+                      "if (pm.environment.get(\"rkhanUserToken\")) {\r",
+                      "    pm.test(\"Token exists in environment\", function () {\r",
+                      "        pm.expect(pm.environment.get(\"rkhanUserToken\")).to.not.be.empty;\r",
+                      "    });\r",
+                      "}\r",
+                      "\r",
+                      "\r",
                       "\r",
                       "//Response Time\r",
                       "pm.test(\"Response time is under threshold (Folder Level)\", () => {\r",
@@ -2424,15 +2490,9 @@
               ]
             }
           ],
+          "description": "**The Tasks** folder contains test cases for all task-related operations: creating, updating, deleting tasks, chaining tasks, fetching task, activities, activity history, and Pomodoro endpoints, verifying correct responses and data integrity.",
           "auth": {
-            "type": "bearer",
-            "bearer": [
-              {
-                "key": "token",
-                "value": "{{rkhanUserToken}}",
-                "type": "string"
-              }
-            ]
+            "type": "noauth"
           },
           "event": [
             {
@@ -2459,7 +2519,8 @@
             }
           ]
         }
-      ]
+      ],
+      "description": "This folder contains **positive (happy-path) test cases** for the TaskFlow API.\n\n### Purpose:\n\nTo verify that the APIs behave correctly when **valid inputs, valid tokens, and correct request data** are provided.\n\n### Coverage:\n\n- Successful authentication (login, signup)\n    \n- Valid task creation, update, delete\n    \n- Fetching tasks, activities, weekly data\n    \n- Valid Pomodoro session flows\n    \n- Correct status codes (200, 201)\n    \n- Proper response body structure and data types\n    \n\n### Expected Result:\n\nAll requests should succeed and return the **expected response**, confirming that the API works as designed under normal usage."
     },
     {
       "name": "Negative Testcases",
@@ -2709,6 +2770,7 @@
               ]
             }
           ],
+          "description": "This folder contains test cases for login, verifying invalid credentials, missing fields, incorrect email formats, and handling of unauthorized access.",
           "event": [
             {
               "listen": "prerequest",
@@ -2780,14 +2842,6 @@
                       "listen": "test",
                       "script": {
                         "exec": [
-                          "const jsonData = pm.response.json();\r",
-                          "\r",
-                          "//Save login auth token in environment variable\r",
-                          "\r",
-                          "pm.environment.set(\"rkhanUserToken\", jsonData.token);\r",
-                          "\r",
-                          "\r",
-                          "\r",
                           "const response = pm.response.json();\r",
                           "\r",
                           "//Save login auth token in environment variable\r",
@@ -2855,10 +2909,113 @@
                     }
                   },
                   "response": []
+                },
+                {
+                  "name": "Wrong Email",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "//Tests \r",
+                          "\r",
+                          "//Check the status code\r",
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "    pm.response.to.have.status(400);\r",
+                          "});\r",
+                          "\r",
+                          "//Check response is an object\r",
+                          "pm.test(\"Response is an object\", function () {\r",
+                          "    pm.expect(response).to.be.an(\"object\");\r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "// Validate data types of the body\r",
+                          "pm.test(\"Validate object field\", function () {\r",
+                          "    pm.expect(response).to.have.property(\"error\").that.is.a(\"string\"); \r",
+                          "});\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "\r",
+                          "//  Log Summary Info\r",
+                          "console.log(\"Status Code:\", pm.response.code);\r",
+                          "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                          "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                          "console.log();"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\": \"RKhan1\",\r\n  \"email\": \"rkhan@1234@gmail.\",\r\n  \"password\": \"rk456\"\r\n}\r\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BaseURL}}/auth/signup",
+                      "host": [
+                        "{{BaseURL}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  {
+                    "key": "token",
+                    "value": "{{rkhanUserToken}}",
+                    "type": "string"
+                  }
+                ]
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      ""
+                    ]
+                  }
                 }
               ]
             }
           ],
+          "description": "This folder contains test cases for signup, checking scenarios like duplicate emails, weak passwords, missing required fields, and invalid email formats.",
+          "auth": {
+            "type": "noauth"
+          },
           "event": [
             {
               "listen": "prerequest",
@@ -2917,6 +3074,34 @@
             }
           ]
         }
+      ],
+      "description": "This folder contains **negative and edge-case test cases** for the TaskFlow API.\n\n### Purpose:\n\nTo verify that the APIs handle **invalid input, missing data, unauthorized access, and error scenarios** correctly.\n\n### Coverage:\n\n- Missing or invalid authentication token\n    \n- Invalid request payloads\n    \n- Wrong IDs (taskId, userId, sessionId)\n    \n- Invalid dates, status, or priority values\n    \n- Empty or null request fields\n    \n- Boundary and edge conditions\n    \n\n### Expected Result:\n\nAPIs should:\n\n- Return correct error codes (400, 401, 403, 404, 422)\n    \n- Provide meaningful error messages\n    \n- Never crash or return incorrect success responses",
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
       ]
     }
   ],
@@ -2928,7 +3113,16 @@
         "packages": {},
         "requests": {},
         "exec": [
-          ""
+          "if (!pm.environment.get(\"BaseURL\")) {\r",
+          "    throw new Error(\"BaseURL is not set in environment\");\r",
+          "}\r",
+          "\r",
+          "\r",
+          "if (pm.environment.get(\"token\")) {\r",
+          "    pm.test(\"Token exists in environment\", function () {\r",
+          "        pm.expect(pm.environment.get(\"token\")).to.not.be.empty;\r",
+          "    });\r",
+          "}"
         ]
       }
     },
@@ -2939,6 +3133,36 @@
         "packages": {},
         "requests": {},
         "exec": [
+          "//For Console Logging\r",
+          "\r",
+          "const jsonData = pm.response.json();\r",
+          "\r",
+          "const bytes    = pm.response.text().length;\r",
+          "const kb       = (bytes/1024).toFixed(2);\r",
+          "const header   = pm.response.headers;\r",
+          "\r",
+          "//Response Time\r",
+          "pm.test(\"Response time is under threshold (Collection Level)\", () => {\r",
+          "    const threshold = parseInt(pm.variables.get(\"collection_max_response_time\")); // fetch from collection variable\r",
+          "    pm.expect(pm.response.responseTime).to.be.below(threshold, \r",
+          "        `Response time exceeded threshold: ${pm.response.responseTime}ms (Threshold: ${threshold}ms)`);\r",
+          "});\r",
+          "\r",
+          "//Size\r",
+          "pm.test(\"Response size under limit ( Collection Level)\", () => {\r",
+          "    const maxSize = parseInt(pm.variables.get(\"collection_max_response_size\") || 15000); \r",
+          "    pm.expect(pm.response.responseSize).to.be.below(maxSize, \r",
+          "        `Response size exceeded: ${pm.response.responseSize} bytes (Limit: ${maxSize})`);\r",
+          "});\r",
+          "\r",
+          "\r",
+          "//Headers \r",
+          "pm.test(\"Content-Type = application/json (Collection Level)\", () => {\r",
+          "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+          "\r",
+          "});\r",
+          "\r",
+          "\r",
           ""
         ]
       }
