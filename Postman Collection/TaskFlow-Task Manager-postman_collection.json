@@ -845,19 +845,13 @@
                               "console.log();\r",
                               "\r",
                               "\r",
+                              "\r",
+                              "\r",
                               "//Pick random task\r",
                               "const randomTask = response[Math.floor(Math.random() * response.length)];\r",
-                              "\r",
                               "//Save random task info to environment\r",
                               "pm.environment.set(\"randomTaskId\", randomTask.id);\r",
-                              "\r",
-                              "\r",
-                              "\r",
-                              "//Pick random task for activities\r",
-                              "const randomTaskId = response[Math.floor(Math.random() * response.length)];\r",
-                              "\r",
-                              "//Save random task info to environment\r",
-                              "pm.environment.set(\"activityRandomTaskId\", randomTaskId.id);"
+                              ""
                             ],
                             "type": "text/javascript",
                             "packages": {},
@@ -1300,6 +1294,135 @@
                           "path": [
                             "tasks",
                             "{{randomTaskId}}"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Current Tasks",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const response = pm.response.json();\r",
+                              "\r",
+                              "\r",
+                              "//Tests \r",
+                              "\r",
+                              "//Check the status code\r",
+                              "pm.test(\"Status code is 200\", function () {\r",
+                              "    pm.response.to.have.status(200);\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is array\r",
+                              "pm.test(\"Response is in an array\", () => {\r",
+                              "    pm.expect(response).to.be.an('array');\r",
+                              "});\r",
+                              "\r",
+                              "//Check response is not empty\r",
+                              "pm.test(\"Response is not empty\", () => {\r",
+                              "    pm.expect(response.length).to.be.above(0);\r",
+                              "});\r",
+                              "\r",
+                              "//Mandatory Fields Validation\r",
+                              "pm.test(\"Tasks has required fields\", function () {\r",
+                              "    response.forEach(response => {\r",
+                              "    pm.expect(response).to.have.property(\"id\");\r",
+                              "    pm.expect(response).to.have.property(\"userId\");\r",
+                              "    pm.expect(response).to.have.property(\"title\");\r",
+                              "    pm.expect(response).to.have.property(\"priority\");\r",
+                              "    pm.expect(response).to.have.property(\"dueDate\");\r",
+                              "    });\r",
+                              "});\r",
+                              "\r",
+                              "// Validate data types of the body\r",
+                              "pm.test(\"Each task fields has correct data types\", function () {\r",
+                              "    response.forEach(response => {\r",
+                              "\r",
+                              "        // id\r",
+                              "        pm.expect(response).to.have.property(\"id\");\r",
+                              "        pm.expect(response.id).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // userId\r",
+                              "        pm.expect(response).to.have.property(\"userId\");\r",
+                              "        pm.expect(response.userId).to.be.a(\"number\");\r",
+                              "\r",
+                              "        // title\r",
+                              "        pm.expect(response).to.have.property(\"title\");\r",
+                              "        pm.expect(response.title).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // description\r",
+                              "        pm.expect(response).to.have.property(\"description\");\r",
+                              "        pm.expect(response.description).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // status\r",
+                              "        pm.expect(response).to.have.property(\"status\");\r",
+                              "        pm.expect(response.status).to.be.a(\"string\");\r",
+                              "        pm.expect([\"Pending\", \"In Progress\", \"Completed\"]).to.include(response.status);\r",
+                              "\r",
+                              "        // priority\r",
+                              "        pm.expect(response).to.have.property(\"priority\");\r",
+                              "        pm.expect(response.priority).to.be.a(\"string\");\r",
+                              "        pm.expect([\"Low\", \"Medium\", \"High\"]).to.include(response.priority);\r",
+                              "\r",
+                              "        // dueDate\r",
+                              "        pm.expect(response).to.have.property(\"dueDate\");\r",
+                              "        pm.expect(response.dueDate).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // createdAt\r",
+                              "        pm.expect(response).to.have.property(\"createdAt\");\r",
+                              "        pm.expect(response.createdAt).to.be.a(\"string\");\r",
+                              "\r",
+                              "        // updatedAt\r",
+                              "        pm.expect(response).to.have.property(\"updatedAt\");\r",
+                              "        pm.expect(response.updatedAt).to.be.a(\"string\");\r",
+                              "    });\r",
+                              "});\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "\r",
+                              "//  Log Summary Info\r",
+                              "console.log(\"Status Code:\", pm.response.code);\r",
+                              "console.log(\"Response Time:\", pm.response.responseTime + \"ms\");\r",
+                              "console.log(\"Response Size:\", pm.response.size().body + \" bytes\");\r",
+                              "console.log();\r",
+                              "\r",
+                              "\r",
+                              "//Pick random task for activities\r",
+                              "const activityRandomTaskId = response[Math.floor(Math.random() * response.length)];\r",
+                              "//Save random activity task info to environment\r",
+                              "pm.environment.set(\"randomActivityTaskId\", activityRandomTaskId.id);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{rkhanUserToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{BaseURL}}/tasks",
+                          "host": [
+                            "{{BaseURL}}"
+                          ],
+                          "path": [
+                            "tasks"
                           ]
                         }
                       },
@@ -1806,13 +1929,13 @@
                           "raw": ""
                         },
                         "url": {
-                          "raw": "{{BaseURL}}/tasks/{{activityRandomTaskId}}/activities",
+                          "raw": "{{BaseURL}}/tasks/{{randomActivityTaskId}}/activities",
                           "host": [
                             "{{BaseURL}}"
                           ],
                           "path": [
                             "tasks",
-                            "{{activityRandomTaskId}}",
+                            "{{randomActivityTaskId}}",
                             "activities"
                           ]
                         }
@@ -3168,9 +3291,9 @@
           "}\r",
           "\r",
           "\r",
-          "if (pm.environment.get(\"token\")) {\r",
+          "if (pm.environment.get(\"rkhanUserToken\")) {\r",
           "    pm.test(\"Token exists in environment(Collection Level)\", function () {\r",
-          "        pm.expect(pm.environment.get(\"token\")).to.not.be.empty;\r",
+          "        pm.expect(pm.environment.get(\"rkhanUserToken\")).to.not.be.empty;\r",
           "    });\r",
           "}"
         ]
@@ -3212,7 +3335,10 @@
           "\r",
           "});\r",
           "\r",
-          "\r",
+          "//Status Code\r",
+          "pm.test(\"Status code is valid\", () => {\r",
+          "    pm.expect(pm.response.code).to.be.oneOf([200,201,204,400,401,403,404]);\r",
+          "});\r",
           ""
         ]
       }
